@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<!--
+    ESSA Safety Culture Wall of Recognition - Main HTML File
+    
+    This HTML file contains the complete structure of the Safety Recognition Wall application.
+    
+    Structure:
+    1. Header Section:
+       - Language toggle button (top-right)
+       - Title and subtitle
+       - Tab navigation (Recognition Page, Safety Leaders, Grassroots Team)
+       - Year and Quarter filters
+    
+    2. Letter Navigation:
+       - A-Z quick links (only visible on Recognition Page tab)
+    
+    3. Recognition Content:
+       - Alphabetical sections (A-Z)
+       - Recognition cards with quarter entries
+       - Each card has data-year and data-quarters attributes
+    
+    4. Safety Leaders Content:
+       - Top 3 champions per year
+       - Special design with circular photos and yellow cards
+       - Consolidated descriptions
+    
+    5. Grassroots Team Content:
+       - Team member cards
+    
+    Data Attributes:
+    - data-year: Year of recognition (2024, 2025)
+    - data-quarter: Quarter filter value (all, Q1, Q2, Q3)
+    - data-tab: Tab identifier (recognition, champions, grassroots)
+    - data-translate: Translation key for multilingual content
+    - data-champion: Champion name for matching
+    
+    @author Vanessa Adjei
+    @version 1.0
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSA Safety Culture Excellence Wall of Recognition</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="ESSA Safety Culture Wall of Recognition - Celebrating safety excellence and contributions">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-toggle" class="lang-btn" aria-label="Switch language">
+            <span class="lang-text">Toggle to English</span>
+            <span class="lang-flag">🇺🇸</span>
+            <span class="toggle-arrow">↔</span>
+        </button>
+    </div>
+    <div class="container">
+        <header class="hero">
+            <h1 data-translate="title">ESSA Safety Culture Excellence Wall of Recognition</h1>
+            <p class="subtitle" data-translate="subtitle">Celebrating excellence in safety leadership and contributions across our organization</p>
+            
+            <!-- Tab Navigation -->
+            <!-- The data-tab attribute is used by JavaScript to identify which content pane to show.
+                 The active class on the first button sets the initial state. All buttons have
+                 data-translate attributes for multilingual support. -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="recognition" data-translate="tab-recognition" aria-label="View recognition page">Recognition Page</button>
+                <button class="tab-btn" data-tab="champions" data-translate="tab-champions" aria-label="View safety champions">Safety Leaders</button>
+                <button class="tab-btn" data-tab="grassroots" data-translate="tab-grassroots" aria-label="View grassroots team">Grassroots Team</button>
+            </div>
+            
+            <!-- Combined Filter Row -->
+            <!-- Year and quarter filters work together - JavaScript applies both filters simultaneously.
+                 The data-year and data-quarter attributes are used by the filtering logic to show/hide
+                 recognition cards. "all" is the default state showing everything. -->
+            <div class="filter-row">
+                <span class="filter-label" data-translate="filter-year">Filter by Year:</span>
+                <div class="year-selector">
+                    <button class="year-btn active" data-year="all" aria-label="View all years recognitions" data-translate="all-years">All Years</button>
+                    <button class="year-btn" data-year="2024" aria-label="View 2024 recognitions">2024</button>
+                    <button class="year-btn" data-year="2025" aria-label="View 2025 recognitions">2025</button>
+                </div>
+                
+                <span class="filter-label" data-translate="filter-quarter">Filter by Quarter:</span>
+                <div class="quarter-filter">
+                    <button class="quarter-btn active" data-quarter="all" data-translate="all-quarters" aria-label="Show all quarters">All Quarters</button>
+                    <button class="quarter-btn" data-quarter="Q1" aria-label="Show Q1 recognitions">Q1</button>
+                    <button class="quarter-btn" data-quarter="Q2" aria-label="Show Q2 recognitions">Q2</button>
+                    <button class="quarter-btn" data-quarter="Q3" aria-label="Show Q3 recognitions">Q3</button>
+                </div>
+                
+            </div>
+        </header>
+
+        <!-- Letter Navigation -->
+        <nav class="letter-nav" aria-label="Alphabetical navigation">
+            <div class="letter-nav-container">
+                <a href="#A" class="letter-link" aria-label="Go to section A">A</a>
+                <a href="#B" class="letter-link" aria-label="Go to section B">B</a>
+                <a href="#C" class="letter-link" aria-label="Go to section C">C</a>
+                <a href="#D" class="letter-link" aria-label="Go to section D">D</a>
+                <a href="#E" class="letter-link" aria-label="Go to section E">E</a>
+                <a href="#F" class="letter-link" aria-label="Go to section F">F</a>
+                <a href="#G" class="letter-link" aria-label="Go to section G">G</a>
+                <a href="#H" class="letter-link" aria-label="Go to section H">H</a>
+                <a href="#I" class="letter-link" aria-label="Go to section I">I</a>
+                <a href="#J" class="letter-link" aria-label="Go to section J">J</a>
+                <a href="#K" class="letter-link" aria-label="Go to section K">K</a>
+                <a href="#L" class="letter-link" aria-label="Go to section L">L</a>
+                <a href="#M" class="letter-link" aria-label="Go to section M">M</a>
+                <a href="#N" class="letter-link" aria-label="Go to section N">N</a>
+                <a href="#O" class="letter-link" aria-label="Go to section O">O</a>
+                <a href="#P" class="letter-link" aria-label="Go to section P">P</a>
+                <a href="#Q" class="letter-link" aria-label="Go to section Q">Q</a>
+                <a href="#R" class="letter-link" aria-label="Go to section R">R</a>
+                <a href="#S" class="letter-link" aria-label="Go to section S">S</a>
+                <a href="#T" class="letter-link" aria-label="Go to section T">T</a>
+                <a href="#U" class="letter-link" aria-label="Go to section U">U</a>
+                <a href="#V" class="letter-link" aria-label="Go to section V">V</a>
+                <a href="#W" class="letter-link" aria-label="Go to section W">W</a>
+                <a href="#X" class="letter-link" aria-label="Go to section X">X</a>
+                <a href="#Y" class="letter-link" aria-label="Go to section Y">Y</a>
+                <a href="#Z" class="letter-link" aria-label="Go to section Z">Z</a>
+            </div>
+        </nav>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Recognition Page Tab -->
+            <div id="recognition-tab" class="tab-pane active">
+                <main id="recognition-section" class="recognition-section">
+                    <h2 data-translate="safety-awards">Celebrated Colleagues and their safety actions</h2>
+                    
+                    <!-- A Section -->
+                    <section id="A" class="letter-section">
+                        <h3 class="letter-header">A</h3>
+                        <div class="cards-container">
+                            <!-- Recognition card structure -->
+                            <!-- data-quarters attribute lists all quarters this person has recognitions for (comma-separated).
+                                 This is used by the filtering logic to quickly determine if a card should be shown.
+                                 data-year indicates which year the recognitions are from. Each quarter entry can be
+                                 individually hidden/shown by the filter, allowing granular control. -->
+                            <article class="card" data-quarters="Q1,Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Antonio Espirito Sungo Buco Sungo</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-antonio-espirito-buco">Buco is an active member in safety culture by pointing out hazards and submitting INI's about them.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-antonio-espirito-sungo">Buco does not remain silent when observing unsafe situations and he conducts toolbox meetings that allow the participation of members involved.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            
+
+                            <article class="card" data-quarters="Q2,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Antonio Casimiro Andre</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-antonio-casimiro">This colleague has promoted more in-depth discussions about safety during meetings, does a lot of research on how to work in a safe environment and shares aspects related to security with other colleagues in the team.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-antonio-casimiro">Casimiro shares his safety knowledge with others</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            
+
+                            <article class="card" data-quarters="Q1,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Arlito De Jesus Domingos Nhiala</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-arlito">Always works safety following all procedures, and pass on your skills and safety knowledge to others.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-arlito">He puts and applies all safety rules first in all work activities.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Antonio Espirito Sungo Buco Sungo -->
+                            <article class="card" data-quarters="Q1,Q2,Q3,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Antonio Espirito Sungo Buco Sungo</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q2-2025-buco-2">Buco has been contributing very positively in all possible ways, such as INI, warning others if they are in an unsafe condition and coaching the new comers</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-buco-1">Buco has been very active on safety matters on the site he works and submitting high quality INIs that are helping management to work with customer to address specific concerns.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-buco-1">He is always participating in district's safety meetings, he always comments and gives valid opinions about safety and he's always submiting good INI's</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-buco-2">Buco exercised Stop Work Authority (SWA) by refusing to transfer to another FPSO for troubleshooting after having worked over 16 hours—exceeding the approved working hours. His decision to decline the request was a commendable demonstration of SWA in action</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Antonio Casimiro Andre -->
+                            <article class="card" data-quarters="Q1,Q1,Q1,Q2,Q2,Q2,Q2,Q2,Q3,Q3,Q3,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Antonio Casimiro Andre</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-casimiro-1">Casimiro conducts safety training</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-casimiro-2">He is dedicated to leading the safety meeting.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-casimiro-3">He coaches FSR's in preparing &amp; presenting the Safety Meetings and INI's</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-casimiro-1">Casimiro is helping to review all Field Base and supporting the Team to achieve a better level by having accurate information that will be used on the work orders of all FSRs</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-casimiro-2">He has been proactive in several aspects of safety, especially fieldmobile data accuracy, and has volunteered to present safety meetings.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-casimiro-3">He helps the team in several aspects connected to safety.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-casimiro-4">He conducts many topics related to working safe, encourages the team to submit INI's and to report all safe and unsafe concerns</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-casimiro-5">He has dedicated his time and energy to contribute to the ongoing district safety meetings. He is always available to support topic selection and selects candidates to present at district safety meetings</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-casimiro-1">He contributes acitvitely in the district safety meetings</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-casimiro-2">He is always supporting safety activities such as Safety Meetings, grassroots etc</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-casimiro-3">He takes safety as his first priority</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-casimiro-4">He spends time preparing the content presented at monthly safety meetings.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Arilto De Jesus Domingos Nhiala -->
+                            <article class="card" data-quarters="Q1,Q2,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Arilto De Jesus Domingos Nhiala</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-arlito">Arilto is always reminding the team to apply safety procedures before start to perform any kind of field activities(Mechanical, Electrical, Pressure, etc)</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-arlito">He regularly participates in company safety meetings and usually anticipates accident</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-arlito">He always follow the correct procedures to perform an activity. Safety first prior to commence an activity</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Alberto José -->
+                            <article class="card" data-quarters="Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Alberto José</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Alberto immediately resolved this situation to avoid the worst. There was a shower in one of the office bathrooms that was running water, right next to a junction box containing electrical wires</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Ambrose Dery -->
+                            <article class="card" data-quarters="Q2,Q2,Q3,Q3,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Ambrose Dery</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Always encouraging others to participate in the safety recognition project. So he is promoting safety in this  manner also</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Ambrose is always talking about good safety topics to Genser personnel on field during activities. He is always giving a good comment during job preparation with customer</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text">He brings awareness of the Safety in the District.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text">He is seen promoting awareness of safety culture</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text">As a new employee he is demonstrating that he understands the importance of being safe and has a great appreciation for the company’s safety culture</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- D Section -->
+                    <section id="D" class="letter-section">
+                        <h3 class="letter-header">D</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1,Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Derek Clark</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-derek">Good reference for safety issues and regularly emphasizes the importance of following Solar standard work practices and safety guidelines.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-derek">Derek contributes during all safety meetings making good observations about topics under discussion with guidance on how to deal with issues in the field.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- C Section -->
+                    <section id="C" class="letter-section">
+                        <h3 class="letter-header">C</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Colm Maguire</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Colm contacts RFE for technical assistance on safety issues as soon as they occur.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- E Section -->
+                    <section id="E" class="letter-section">
+                        <h3 class="letter-header">E</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Estevao Barros Beco</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-estevao">Beco displays awareness and continuous communication when on the field</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+
+                            <article class="card" data-quarters="Q1,Q2,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Eduardo Costa</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-eduardo">Eduardo Costa is one person who puts safety first and cares about the safety of others as his own. He has a human sense for others to be safe and goes to great lengths to ensure his safety and others safety. This motivates me and I take it as an example</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-eduardo">Eduardo supports the team in the field with positive feedback</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-eduardo">He encourages, he shows the importance of safety and facilitates the steps taken on the subject. He even brings safety specialists from outside the country to help work on our security projects. He pushes all the team to be interested and to talk about safety in the meetings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                        </div>
+                    </section>
+
+                    <!-- F Section -->
+                    <section id="F" class="letter-section">
+                        <h3 class="letter-header">F</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Felipe Nguema Nkogo Alene</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Felipe was observed stepping back and stopping the job for reassessment due to reading of LEL on portable gas meter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- G Section -->
+                    <section id="G" class="letter-section">
+                        <h3 class="letter-header">G</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Gabriel Muanda Mabanza</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-gabriel">Gabriel submits INI's regularly</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- 2025: Estevão Barros Beco -->
+                            <article class="card" data-quarters="Q1,Q1,Q1,Q1,Q2,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Estevão Barros Beco</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-estevao-1">Beco always follows the safety precautions</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-estevao-2">The way he behaves during work, and the desire to progress in terms of knowledge about safety.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-estevao-3">He performs the job with a strong emphasis on safety, ensuring all requirements are met—including thorough site assessments, accurate documentation, and the use of appropriate tools for each task.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-estevao-4">We have had several works on the same team, and is always up front with paperwork, safety procedures, and during work he learns and apply safety procedures at all time... not only when at work, also when we out of site.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-estevao">He performs the job with a strong emphasis on safety, ensuring all requirements are met—including thorough site assessments, accurate documentation, and the use of appropriate tools for each task</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-estevao">He performs the job with a strong emphasis on safety, and works hard on each task.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Eduardo Costa -->
+                            <article class="card" data-quarters="Q1,Q2,Q3,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Eduardo Costa</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-eduardo">Eduardo advices, whenever you feel you are in unsafe position stay calm and think what can be done for yourself to be back in safe position</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-eduardo">During meeting or any conversation… he encourages every member to be safe, not only during work but also in their free time, and this atitude really turns habit into culture</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-eduardo-1">He always puts safety first</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-eduardo-2">Eduardo always asks the employee if he/she is in condition to perform a task, highlighting the effects of fatigue</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Esmeraldo Adelio Quicavuanga -->
+                            <article class="card" data-quarters="Q1,Q2,Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Esmeraldo Adelio Quicavuanga</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">During an Enclosure project, Esmeraldo makes sure that every morning, paperwork is done, following the tbox meeting, great attitude.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Esmeraldo did a great job in guiding remotely our customer to perform an engine exchange in a full safety manner!</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Recently Esmeraldo supported a remote engineer exchange with Customer Team.Esmeraldo attention to safety was really important to prevent incident and it was also much appreciated.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- 2025: Gabriel Muanda -->
+                            <article class="card" data-quarters="Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Gabriel Muanda</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Gabriel is submitting high quality INIs and providing information about the conditions on the site he works. His actions are helping management to work with customer to improve safety standards on site</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- I Section -->
+                    <section id="I" class="letter-section">
+                        <h3 class="letter-header">I</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Imaculada Zola Zau</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-imaculada">Ima consistently identifies hazards that could potentially cause harm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- 2025: Imaculada Zola Zau -->
+                            <article class="card" data-quarters="Q1,Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Imaculada Zola Zau</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Ima participate's in safety meeting, INI's</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">She always reminds people to be careful about the stairs in the office and to be careful with the hot things in the kitchen</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- J Section -->
+                    <section id="J" class="letter-section">
+                        <h3 class="letter-header">J</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Joao Barros</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-joao">Barros always considers safety as a priority using right tools and right procedures</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-joao">He has followed all safety procedures and has encouraged his colleagues to do so as well.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="card" data-quarters="Q2,Q2,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Jose Matata</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-jose-matata">Jose is always warning the team members every day on site before the start of work, and he is so vigilant, watching the others attitude during the work, he is one of the best for me on promoting safety culture.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-jose-matata-2">He displays awareness and continuous communication when on the field</span>
+                                </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-jose-matata">He puts and applies all safety rules first in all work activities. He has followed all safety procedures and has encouraged his colleagues to do so as well.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="card" data-quarters="Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Jose Salomao Mavungo Matoco</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-jose-salomao">During the last upgrade project at the Malongo Power Station, the FIR Leader was dealing with several teams (Welders, Electricians, Mechanics, Insulators, Scaffolding, Riggers and the Maintenance Management team), in my absence from the site he was the one who carried out some interventions on the safety procedures of other teams on site and also intervened in some safety procedures for Solar coworkers. I congratulated him on this attitude</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="card" data-quarters="Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Julio Jose Lubua</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-julio">Julio contributes through Incident reporting (INI)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- 2025: Julio Jose Lubua -->
+                            <article class="card" data-quarters="Q1,Q1,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Julio Jose Lubua</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-julio-1">Julio constantly gives his contribution during district monthly safety meetings by sharing his thoughts and concerns.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-julio-2">Julio promotes safety culture in his day to day activities</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-julio">While at the airport to fulfill a client mission, he did not board because the TRAAC was not fully approved, missing the final line of approval. This demonstrates serious compliance with safety standards.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Joao Barros (Q1 additional) -->
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Joao Barros</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Barros is always analyzing and preparing the right documentation for JSA.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: João Sissunda -->
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>João Sissunda</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Sissunda helps in maintaining all first line of defense equipments in a readiness state that can help respond to any event that could occur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: José Matata -->
+                            <article class="card" data-quarters="Q1,Q1,Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>José Matata</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Matata Inspects, identifies issues and takes corrective actions on Lifting Tool Issues</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">For having the courage to stop work on a platform at a client in Equatorial Guinea, where it was discovered that the surveying equipment was unsuitable, generating a discussion until the correct equipment was found and the work could then continue</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">He is a person with an exemplary safety culture character.Whenever we are at work, he is someone who always motivates colleagues to follow the rules</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Jacinto Fuxe -->
+                            <article class="card" data-quarters="Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Jacinto Fuxe</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">He monitors whether colleagues are safe during tasks.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                        </div>
+                    </section>
+
+                    <!-- L Section -->
+                    <section id="L" class="letter-section">
+                        <h3 class="letter-header">L</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1,Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Lusandu Lukau</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-lusandu">Lusandu identified and reported Site Unsafe Conditions such as corroded Fire extinguishant Cylinders on a site he visited</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-lusandu">He has the ability to notice the place where he is going to work and make sure everything is in order before he goes into action</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Luzia da Costa Umba -->
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Luzia da Costa Umba</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Luzia always shares safety her experiences during her time working as a safety rep. in Malongo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Lucio Rafael Ondo -->
+                            <article class="card" data-quarters="Q1,Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Lucio Rafael Ondo</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">During a training in US it was snowing heavily , Lucio prioritised safety by parking the car and waiting for the snowfall to reduce then we continued the journey to the training center</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Lucio identified Energy Isolation issues of the Fire Suppression system on site</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Lusandu Lukau -->
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Lusandu Lukau</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Lusandu focuses primarily on safety conditions during all work activities</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- M Section -->
+                    <section id="M" class="letter-section">
+                        <h3 class="letter-header">M</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1,Q3" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Mark Gorman</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-mark">Mark uses Stop Work Authority whenever safety is violated or compromised</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-mark">He shares his opinion during safety meetings and encourages others to participate and share their opinions as well</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Mark Gorman -->
+                            <article class="card" data-quarters="Q2,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Mark Gorman</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Mark contributes well in safety meetings with real life experiences of issues that have came up on site</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text">He observed an unsafe operation of a switchgear unit on site. Told the customer and sent a mail about it to the customer for them to improve on their switchgear design</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Mario Bobby Zau -->
+                            <article class="card" data-quarters="Q2,Q2" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Mario Bobby Zau</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">Colleague contributes a lot to the pre work safety meetings, dividing the activities for everyone, measuring the level of risk exposed according to each skill. During work, he does his best to always follow the procedures and knows how to recognize the team's level of fatigue to avoid accidents</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">By always being vigilant while the work is being performed and he notifies the manager if he finds out a missing training that could promote safety culture in the workplace</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- S Section -->
+                    <section id="S" class="letter-section">
+                        <h3 class="letter-header">S</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q2,Q2" data-year="2024">
+                                <div class="card-header">
+                                    <h4>Stela Pilartes da Silva</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-stela-1">Organizing Safety meeting with relevant topics</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-stela-2">She has insured that the security staff have a good communication link (Walk Talkie) between themselves</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Stela Pilartes da Silva -->
+                            <article class="card" data-quarters="Q1,Q2,Q2,Q3,Q3,Q3,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Stela Pilartes da Silva</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text" data-translate="q1-2025-stela">Stela used to conduct the Monthly safety meetings very well</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-stela-1">She cautioned the safety asepct of my heavy bag that I was taking to site</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text" data-translate="q2-2025-stela-2">Stela always promotes safety awareness in my workstation</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-stela-1">Stela has been demonstrating lead on safety aspects. She is not just helping to generate the safety meeting minutes but she took the lead as safety leader of ESSA district before Katiki. She took the lead of the EHSS of the District. There were a time where she could cover the district safety meetings, updating the EHSS SharePoint, etc. Well done Stela and warm thanks to your strong safety culture and for leading by example.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-stela-2">She always gves kind advices regarding safety culture.</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-stela-3">She always makes good remarks about safety</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text" data-translate="q3-2025-stela-4">She contributes during safety and district meetings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- 2025: Serafim Miguel Francisco -->
+                            <article class="card" data-quarters="Q1,Q2,Q3" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Serafim Miguel Francisco</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Serafim is always there to promote the Safety Culture, and he is always willing to suggest new ideas about safety culture</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q2</span>
+                                            <span class="quarter-text">He promotes safety topics on site</span>
+                                        </div>
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q3</span>
+                                            <span class="quarter-text">He brings awareness to safety on the site</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- T Section -->
+                    <section id="T" class="letter-section">
+                        <h3 class="letter-header">T</h3>
+                        <div class="cards-container">
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Tito Tchitunda Samoma</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Tito noticed someone feeling unwell and then called Alberto José, asking him to excuse the person so he could go to the hospital</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="card" data-quarters="Q1" data-year="2025">
+                                <div class="card-header">
+                                    <h4>Tshitshi Baptista</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quarter-info">
+                                        <div class="quarter">
+                                            <span class="quarter-label">Q1</span>
+                                            <span class="quarter-text">Tshitshi has always encouraged his colleagues to maintain a hands-on approach and a commitment to a workplace safety culture.As a leader, and aware of the risks his employees face in the field due to the nature of their work, he has been a strong advocate for fatality prevention</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                </main>
+            </div>
+
+            <!-- Safety Champions Tab -->
+            <div id="champions-tab" class="tab-pane">
+                <main class="champions-section">
+                    <h2 data-translate="safety-champions">Safety Champions</h2>
+                    <p class="champions-subtitle" data-translate="champions-subtitle">All recognized safety contributors across the organization</p>
+                    
+                    <div class="champions-container">
+                        <div class="champion-name" data-champion="Antonio Espirito Sungo Buco Sungo">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Antonio Espirito Sungo Buco Sungo" />
+                            </div>
+                            <span class="champion-text">Antonio Espirito Sungo Buco Sungo</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Buco is an active member in safety culture by pointing out hazards and submitting INI's about them.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Buco does not remain silent when observing unsafe situations and he conducts toolbox meetings that allow the participation of members involved.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Buco has been contributing very positively in all possible ways, such as INI, warning others if they are in an unsafe condition and coaching the new comers</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Buco has been very active on safety matters on the site he works and submitting high quality INIs that are helping management to work with customer to address specific concerns.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He is always participating in district's safety meetings, he always comments and gives valid opinions about safety and he's always submiting good INI's</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Buco exercised Stop Work Authority (SWA) by refusing to transfer to another FPSO for troubleshooting after having worked over 16 hours—exceeding the approved working hours. His decision to decline the request was a commendable demonstration of SWA in action</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Antonio Casimiro Andre">
+                            <div class="champion-profile">
+                                <img src="images/champions/antonio-casimiro-andre.jpg" alt="Antonio Casimiro Andre" />
+                            </div>
+                            <span class="champion-text">Antonio Casimiro Andre</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">This colleague has promoted more in-depth discussions about safety during meetings, does a lot of research on how to work in a safe environment and shares aspects related to security with other colleagues in the team.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Casimiro shares his safety knowledge with others</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Casimiro conducts safety training</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">He is dedicated to leading the safety meeting.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">He coaches FSR’s in preparing &amp; presenting the Safety Meetings and INI’s</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Casimiro is helping to review all Field Base and supporting the Team to achieve a better level by having accurate information that will be used on the work orders of all FSRs</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He has been proactive in several aspects of safety, especially fieldmobile data accuracy, and has volunteered to present safety meetings.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He helps the team in several aspects connected to safety.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He conducts many topics related to working safe, encourages the team to submit INI's and to report all safe and unsafe concerns</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He has dedicated his time and energy to contribute to the ongoing district safety meetings. He is always available to support topic selection and selects candidates to present at district safety meetings</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He contributes acitvitely in the district safety meetings</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He is always supporting safety activities such as Safety Meetings, grassroots etc</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He takes safety as his first priority</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He spends time preparing the content presented at monthly safety meetings.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Arlito De Jesus Domingos Nhiala">
+                            <div class="champion-profile">
+                                <img src="images/champions/arlito-de-jesus-domingos-nhiala.JPG" alt="Arlito De Jesus Domingos Nhiala" />
+                            </div>
+                            <span class="champion-text">Arlito De Jesus Domingos Nhiala</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Always works safety following all procedures, and pass on your skills and safety knowledge to others.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He puts and applies all safety rules first in all work activities.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Arilto is always reminding the team to apply safety procedures before start to perform any kind of field activities(Mechanical, Electrical, Pressure, etc)</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He regularly participates in company safety meetings and usually anticipates accident</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He always follow the correct procedures to perform an activity. Safety first prior to commence an activity</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Derek Clark">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face" alt="Derek Clark" />
+                            </div>
+                            <span class="champion-text">Derek Clark</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Good reference for safety issues and regularly emphasizes the importance of following Solar standard work practices and safety guidelines.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Derek contributes during all safety meetings making good observations about topics under discussion with guidance on how to deal with issues in the field.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Eduardo Costa">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face" alt="Eduardo Costa" />
+                            </div>
+                            <span class="champion-text">Eduardo Costa</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Eduardo Costa is one person who puts safety first and cares about the safety of others as his own. He has a human sense for others to be safe and goes to great lengths to ensure his safety and others safety. This motivates me and I take it as an example</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Eduardo supports the team in the field with positive feedback</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He encourages, he shows the importance of safety and facilitates the steps taken on the subject. He even brings safety specialists from outside the country to help work on our security projects. He pushes all the team to be interested and to talk about safety in the meetings</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Eduardo advices, whenever you feel you are in unsafe position stay calm and think what can be done for yourself to be back in safe position</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">During meeting or any conversation… he encourages every member to be safe, not only during work but also in their free time, and this atitude really turns habit into culture</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He always puts safety first</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Eduardo always asks the employee if he/she is in condition to perform a task, highlighting the effects of fatigue</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Estevao Barros Beco">
+                            <div class="champion-profile">
+                                <img src="images/champions/beco.jpg" alt="Estevao Barros Beco" />
+                            </div>
+                            <span class="champion-text">Estevao Barros Beco</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Beco displays awareness and continuous communication when on the field</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Beco always follows the safety precautions</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">The way he behaves during work, and the desire to progress in terms of knowledge about safety.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">He performs the job with a strong emphasis on safety, ensuring all requirements are met—including thorough site assessments, accurate documentation, and the use of appropriate tools for each task.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">We have had several works on the same team, and is always up front with paperwork, safety procedures, and during work he learns and apply safety procedures at all time... not only when at work, also when we out of site.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He performs the job with a strong emphasis on safety, ensuring all requirements are met—including thorough site assessments, accurate documentation, and the use of appropriate tools for each task</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He performs the job with a strong emphasis on safety, and works hard on each task.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Gabriel Muanda Mabanza">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Gabriel Muanda Mabanza" />
+                            </div>
+                            <span class="champion-text">Gabriel Muanda Mabanza</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Gabriel submits INI's regularly</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Imaculada Zola Zau">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Imaculada Zola Zau" />
+                            </div>
+                            <span class="champion-text">Imaculada Zola Zau</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Ima consistently identifies hazards that could potentially cause harm</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Ima participate's in safety meeting, INI's</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">She always reminds people to be careful about the stairs in the office and to be careful with the hot things in the kitchen</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Joao Barros">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Joao Barros" />
+                            </div>
+                            <span class="champion-text">Joao Barros</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Barros always considers safety as a priority using right tools and right procedures</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He has followed all safety procedures and has encouraged his colleagues to do so as well.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Barros is always analyzing and preparing the right documentation for JSA.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Jose Matata">
+                            <div class="champion-profile">
+                                <img src="images/champions/jose-matata.JPG" alt="Jose Matata" />
+                            </div>
+                            <span class="champion-text">Jose Matata</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Jose is always warning the team members every day on site before the start of work, and he is so vigilant, watching the others attitude during the work, he is one of the best for me on promoting safety culture.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He displays awareness and continuous communication when on the field</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He puts and applies all safety rules first in all work activities. He has followed all safety procedures and has encouraged his colleagues to do so as well.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Matata Inspects, identifies issues and takes corrective actions on Lifting Tool Issues</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">For having the courage to stop work on a platform at a client in Equatorial Guinea, where it was discovered that the surveying equipment was unsuitable, generating a discussion until the correct equipment was found and the work could then continue</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He is a person with an exemplary safety culture character.Whenever we are at work, he is someone who always motivates colleagues to follow the rules</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Jose Salomao Mavungo Matoco">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Jose Salomao Mavungo Matoco" />
+                            </div>
+                            <span class="champion-text">Jose Salomao Mavungo Matoco</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">During the last upgrade project at the Malongo Power Station, the FIR Leader was dealing with several teams (Welders, Electricians, Mechanics, Insulators, Scaffolding, Riggers and the Maintenance Management team), in my absence from the site he was the one who carried out some interventions on the safety procedures of other teams on site and also intervened in some safety procedures for Solar coworkers. I congratulated him on this attitude</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Julio Jose Lubua">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Julio Jose Lubua" />
+                            </div>
+                            <span class="champion-text">Julio Jose Lubua</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Julio contributes through Incident reporting (INI)</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Julio constantly gives his contribution during district monthly safety meetings by sharing his thoughts and concerns.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Julio promotes safety culture in his day to day activities</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">While at the airport to fulfill a client mission, he did not board because the TRAAC was not fully approved, missing the final line of approval. This demonstrates serious compliance with safety standards.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Lusandu Lukau">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&crop=face" alt="Lusandu Lukau" />
+                            </div>
+                            <span class="champion-text">Lusandu Lukau</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Lusandu identified and reported Site Unsafe Conditions such as corroded Fire extinguishant Cylinders on a site he visited</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">He has the ability to notice the place where he is going to work and make sure everything is in order before he goes into action</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Mark Gorman">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face" alt="Mark Gorman" />
+                            </div>
+                            <span class="champion-text">Mark Gorman</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Mark uses Stop Work Authority whenever safety is violated or compromised</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">He shares his opinion during safety meetings and encourages others to participate and share their opinions as well</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="champion-name" data-champion="Stela Pilartes da Silva">
+                            <div class="champion-profile">
+                                <img src="images/champions/stella.jpeg" alt="Stela Pilartes da Silva" />
+                            </div>
+                            <span class="champion-text">Stela Pilartes da Silva</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Organizing Safety meeting with relevant topics</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">She has insured that the security staff have a good communication link (Walk Talkie) between themselves</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q1</span>
+                                    <span class="quarter-text">Stela used to conduct the Monthly safety meetings very well</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">She cautioned the safety asepct of my heavy bag that I was taking to site</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q2</span>
+                                    <span class="quarter-text">Stela always promotes safety awareness in my workstation</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">Stela has been demonstrating lead on safety aspects. She is not just helping to generate the safety meeting minutes but she took the lead as safety leader of ESSA district before Katiki. She took the lead of the EHSS of the District. There were a time where she could cover the district safety meetings, updating the EHSS SharePoint, etc. Well done Stela and warm thanks to your strong safety culture and for leading by example.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">She always gves kind advices regarding safety culture.</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">She always makes good remarks about safety</span>
+                                </div>
+                                <div class="champion-quarter">
+                                    <span class="quarter-label">Q3</span>
+                                    <span class="quarter-text">She contributes during safety and district meetings</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New 2025 Safety Leaders -->
+                        <div class="champion-name" data-champion="Alberto José">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Alberto José" />
+                            </div>
+                            <span class="champion-text">Alberto José</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Alberto immediately resolved this situation to avoid the worst. There was a shower in one of the office bathrooms that was running water, right next to a junction box containing electrical wires</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Ambrose Dery">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Ambrose Dery" />
+                            </div>
+                            <span class="champion-text">Ambrose Dery</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Always encouraging others to participate in the safety recognition project. So he is promoting safety in this  manner also</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Ambrose is always talking about good safety topics to Genser personnel on field during activities. He is always giving a good comment during job preparation with customer</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q3</span><span class="quarter-text">He brings awareness of the Safety in the District.</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q3</span><span class="quarter-text">He is seen promoting awareness of safety culture</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q3</span><span class="quarter-text">As a new employee he is demonstrating that he understands the importance of being safe and has a great appreciation for the company’s safety culture</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Colm Maguire">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Colm Maguire" />
+                            </div>
+                            <span class="champion-text">Colm Maguire</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Colm contacts RFE for technical assistance on safety issues as soon as they occur.</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Esmeraldo Adelio Quicavuanga">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Esmeraldo Adelio Quicavuanga" />
+                            </div>
+                            <span class="champion-text">Esmeraldo Adelio Quicavuanga</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">During an Enclosure project, Esmeraldo makes sure that every morning, paperwork is done, following the tbox meeting, great attitude.</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Esmeraldo did a great job in guiding remotely our customer to perform an engine exchange in a full safety manner!</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Recently Esmeraldo supported a remote engineer exchange with Customer Team.Esmeraldo attention to safety was really important to prevent incident and it was also much appreciated.</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Lucio Rafael Ondo">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Lucio Rafael Ondo" />
+                            </div>
+                            <span class="champion-text">Lucio Rafael Ondo</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">During a training in US it was snowing heavily , Lucio prioritised safety by parking the car and waiting for the snowfall to reduce then we continued the journey to the training center</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Lucio identified Energy Isolation issues of the Fire Suppression system on site</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Luzia da Costa Umba">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Luzia da Costa Umba" />
+                            </div>
+                            <span class="champion-text">Luzia da Costa Umba</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">Luzia always shares safety her experiences during her time working as a safety rep. in Malongo</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Mario Bobby Zau">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Mario Bobby Zau" />
+                            </div>
+                            <span class="champion-text">Mario Bobby Zau</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Colleague contributes a lot to the pre work safety meetings, dividing the activities for everyone, measuring the level of risk exposed according to each skill. During work, he does his best to always follow the procedures and knows how to recognize the team's level of fatigue to avoid accidents</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">By always being vigilant while the work is being performed and he notifies the manager if he finds out a missing training that could promote safety culture in the workplace</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Serafim Miguel Francisco">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Serafim Miguel Francisco" />
+                            </div>
+                            <span class="champion-text">Serafim Miguel Francisco</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">Serafim is always there to promote the Safety Culture, and he is always willing to suggest new ideas about safety culture</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">He promotes safety topics on site</span></div>
+                                <div class="champion-quarter"><span class="quarter-label">Q3</span><span class="quarter-text">He brings awareness to safety on the site</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Felipe Nguema Nkogo Alene">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Felipe Nguema Nkogo Alene" />
+                            </div>
+                            <span class="champion-text">Felipe Nguema Nkogo Alene</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">Felipe was observed stepping back and stopping the job for reassessment due to reading of LEL on portable gas meter</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="João Sissunda">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="João Sissunda" />
+                            </div>
+                            <span class="champion-text">João Sissunda</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">Sissunda helps in maintaining all first line of defense equipments in a readiness state that can help respond to any event that could occur</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Jacinto Fuxe">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Jacinto Fuxe" />
+                            </div>
+                            <span class="champion-text">Jacinto Fuxe</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q2</span><span class="quarter-text">He monitors whether colleagues are safe during tasks.</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Tito Tchitunda Samoma">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Tito Tchitunda Samoma" />
+                            </div>
+                            <span class="champion-text">Tito Tchitunda Samoma</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">Tito noticed someone feeling unwell and then called Alberto José, asking him to excuse the person so he could go to the hospital</span></div>
+                            </div>
+                        </div>
+
+                        <div class="champion-name" data-champion="Tshitshi Baptista">
+                            <div class="champion-profile">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Tshitshi Baptista" />
+                            </div>
+                            <span class="champion-text">Tshitshi Baptista</span>
+                            <span class="expand-icon">▼</span>
+                            <div class="champion-details" style="display: none;">
+                                <div class="champion-quarter"><span class="quarter-label">Q1</span><span class="quarter-text">Tshitshi has always encouraged his colleagues to maintain a hands-on approach and a commitment to a workplace safety culture.As a leader, and aware of the risks his employees face in the field due to the nature of their work, he has been a strong advocate for fatality prevention</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Grassroots Team Tab -->
+            <div id="grassroots-tab" class="tab-pane">
+                <main class="grassroots-section">
+                    <h2 data-translate="grassroots-team">Grassroots Implementation Team</h2>
+                    <p class="grassroots-subtitle" data-translate="grassroots-subtitle">Recognizing the dedicated professionals who developed and implemented this Safety Culture Recognition Program</p>
+
+                    <div class="org-chart">
+
+                    <!-- Leader -->
+                    <div class="org-leader">
+                        <article class="grassroots-card">
+                        <!-- Ambrose card -->
+                        <div class="grassroot-profile">
+                            <img src="images/grassroots/ambrose-dery.JPG" alt="Ambrose Dery" />
+                        </div>
+                        <h3>Ambrose Dery</h3>
+                        <p data-translate="role-lead">Team Lead</p>
+                        </article>
+                    </div>
+
+                    <!-- Connector line -->
+                    <div class="org-connector"></div>
+
+                    <!-- Team -->
+                    <div class="org-team">
+                        <!-- the 4 other cards -->
+                         <article class="grassroots-card">
+                            <div class="grassroot-profile">
+                                <img src="images/grassroots/stela-pilartes-da-silva.jpg" alt="Stela Pilartes da Silva" />
+                            </div>
+                            <h3>Stela Pilartes da Silva</h3>
+                            <p data-translate="role-member">Team Member</p>
+                        </article>
+                        
+                        <article class="grassroots-card">
+                            <div class="grassroot-profile">
+                                <img src="images/grassroots/imaculada-zola-zau.jpg" alt="Imaculada Zola Zau" />
+                            </div>
+                            <h3>Imaculada Zola Zau</h3>
+                            <p data-translate="role-member">Team Member</p>
+                        </article>
+                        
+                        <article class="grassroots-card">
+                            <div class="grassroot-profile">
+                                <img src="images/grassroots/luzia-da-costa-umba.jpg" alt="Luzia Umba" />
+                            </div>
+                            <h3>Luzia Umba</h3>
+                            <p data-translate="role-member">Team Member</p>
+                        </article>
+                        
+                        <article class="grassroots-card">
+                            <div class="grassroot-profile">
+                                <img src="images/grassroots/nlola-vicente-tati-pascoal.jpg" alt="Nlola Vicente Tati Pascoal" />
+                            </div>
+                            <h3>Nlola Vicente Tati Pascoal</h3>
+                            <p data-translate="role-member">Team Member</p>
+                        </article>
+                    </div>
+
+                    </div>
+
+                </main>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <p data-translate="footer-gratitude">The District extends their gratitude to our team members for their unwavering commitment to workplace safety</p>
+            <p class="small" data-translate="footer-program">ESSA Safety Culture Excellence Recognition program</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
